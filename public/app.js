@@ -1,27 +1,3 @@
-console.log('hello');
-
-// function updateProduct(e) {
-//   const db = firebase.firestore();
-//   const myProduct = db.collection('products').doc('mdbKuTKmJWRgevwMEt6J');
-//   myProduct.update({ name: e.target.value });
-// }
-
-// document.addEventListener('DOMContentLoaded', event => {
-//   const app = firebase.app();
-//   const db = firebase.firestore();
-//   const myProducts = db.collection('products');
-
-//   const productsContainer = document.querySelector('#products__container');
-//   const docFrag = document.createDocumentFragment();
-
-//   let productName = document.createElement('h4');
-//   let productPrice = document.createElement('p');
-
-//   docFrag.appendChild(productName);
-//   docFrag.appendChild(productPrice);
-
-//   productsContainer.appendChild(docFrag);
-
 document.addEventListener('DOMContentLoaded', event => {
   const db = firebase.firestore();
   const myProducts = db.collection('products');
