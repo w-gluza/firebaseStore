@@ -4,12 +4,15 @@ document.addEventListener('DOMContentLoaded', event => {
   const myProducts = db.collection('products');
   const productsContainer = document.querySelector('#products__container');
   const form = document.querySelector('#add__product');
+  const basket = [];
 
   function renderProduct(doc) {
     const docFrag = document.createDocumentFragment();
     let article = document.createElement('article');
     let productName = document.createElement('h4');
     let productPrice = document.createElement('p');
+    let addButton = document.createElement('button');
+
     let deleteButton = document.createElement('button');
     let updateButton = document.createElement('button');
 
@@ -17,16 +20,27 @@ document.addEventListener('DOMContentLoaded', event => {
 
     productName.textContent = doc.data().name;
     productPrice.textContent = doc.data().price;
+    addButton.textContent = 'Add to basket';
     deleteButton.textContent = 'Delete';
     updateButton.textContent = 'Update';
 
     docFrag.appendChild(productName);
     docFrag.appendChild(productPrice);
+    docFrag.appendChild(addButton);
     docFrag.appendChild(deleteButton);
     docFrag.appendChild(updateButton);
 
     article.appendChild(docFrag);
     productsContainer.appendChild(article);
+
+    addButton.addEventListener('click', e => {
+      basket.push(doc.data());
+      console.log(basket);
+      let basketTotal = basket.reduce(function(prev, cur) {
+        return prev + cur.price;
+      }, 0);
+      console.log('Total Price:', basketTotal); // Total Price
+    });
 
     deleteButton.addEventListener('click', e => {
       let id = e.target.parentElement.getAttribute('product-id');
@@ -70,7 +84,7 @@ document.addEventListener('DOMContentLoaded', event => {
       e.preventDefault();
       myProducts.add({
         name: form.name.value,
-        price: form.price.value
+        price: parseFloat(form.price.value)
       });
     });
   }
