@@ -65,54 +65,74 @@ document.addEventListener('DOMContentLoaded', event => {
   });
 
   // creating new data
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    myProducts.add({
-      name: form.name.value,
-      price: form.price.value
+  if (form != null) {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      myProducts.add({
+        name: form.name.value,
+        price: form.price.value
+      });
     });
-  });
+  }
+
   auth.onAuthStateChanged(user => {
     if (user) {
-      console.log('user logged in: ', user);
+      user.getIdTokenResult().then(idTokenResult => {
+        //admin
+        if (idTokenResult.claims.user_id == '90EDQaY9IcQgQERUgvlAxkNDHlv2') {
+          console.log('admin on board: ', user);
+          //regular user
+        } else {
+          console.log('Regular user logged in: ', user);
+        }
+      });
+      //logout
     } else {
       console.log('user logged out: ');
     }
   });
 
   const signupForm = document.querySelector('#signup-form');
-  signupForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const email = signupForm['signup-email'].value;
-    const password = signupForm['signup-password'].value;
+  if (signupForm != null) {
+    signupForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const email = signupForm['signup-email'].value;
+      const password = signupForm['signup-password'].value;
 
-    // sign up user
-    const auth = firebase.auth();
-
-    auth.createUserWithEmailAndPassword(email, password).then(cred => {
-      console.log(cred);
+      // sign up user
+      const auth = firebase.auth();
+      console.log('user signed up');
+      auth.createUserWithEmailAndPassword(email, password).then(cred => {
+        console.log(cred);
+      });
     });
-  });
-  // log out form
-  const logout = document.querySelector('#logout');
-  logout.addEventListener('click', e => {
-    const auth = firebase.auth();
-    e.preventDefault();
-    auth.signOut();
-  });
+  }
 
-  //log in
+  //log in, check if button/form even exists on this page
   const loginForm = document.querySelector('#login-form');
-  loginForm.addEventListener('submit', e => {
-    const auth = firebase.auth();
-    e.preventDefault();
-    const email = loginForm['login-email'].value;
-    const password = loginForm['login-password'].value;
+  if (loginForm != null) {
+    loginForm.addEventListener('submit', e => {
+      const auth = firebase.auth();
+      e.preventDefault();
+      const email = loginForm['login-email'].value;
+      const password = loginForm['login-password'].value;
 
-    auth.signInWithEmailAndPassword(email, password).then(cred => {
-      console.log('user logged in');
+      auth.signInWithEmailAndPassword(email, password).then(cred => {
+        console.log('user logged in');
+        window.location.href = 'admin.html';
+      });
     });
-  });
+  }
 
+  //log out form check if button/form even exists on this page
+  const logout = document.querySelector('#logout');
+  if (logout != null) {
+    logout.addEventListener('click', e => {
+      const auth = firebase.auth();
+      e.preventDefault();
+      auth.signOut();
+      window.location.href = 'index.html';
+    });
+  }
   // end document loaded
 });

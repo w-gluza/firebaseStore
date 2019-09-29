@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Welcome to Firebase Hosting</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/7.0.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.0.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.0.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/7.0.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/7.0.0/firebase-storage.js"></script>
+    <script defer src="/__/firebase/7.0.0/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/7.0.0/firebase-firestore.js"></script>
+
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="main__login">
+      <section class="card">
+        <form class="form" id="signup-form">
+          <legend>Sign Up</legend>
+          <div class="input-field">
+            <label for="signup-email">Email:</label>
+            <input
+              type="email"
+              id="signup-email"
+              placeholder="new.user@gmail.com"
+              required
+            />
+          </div>
+          <div class="input-field">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="signup-password"
+              placeholder="password"
+              required
+            />
+          </div>
+          <button class="btn" type="submit">Sign Up</button>
+        </form>
+      </section>
+      <section class="card card-mod">
+        <form class="form" id="login-form">
+          <legend>Log In</legend>
+          <div class="input-field">
+            <label for="login-email">Email:</label>
+            <input
+              type="email"
+              id="login-email"
+              placeholder="registered.user@gmail.com"
+              required
+            />
+          </div>
+          <div class="input-field">
+            <label for="password">Password:</label>
+            <input
+              type="password"
+              id="login-password"
+              placeholder="password"
+              required
+            />
+          </div>
+          <button class="btn" type="submit">Log In</button>
+        </form>
+      </section>
+      <button id="logout">Log Out</button>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
