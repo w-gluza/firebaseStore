@@ -13,6 +13,7 @@
     <script defer src="/__/firebase/7.0.0/firebase-messaging.js"></script>
     <script defer src="/__/firebase/7.0.0/firebase-storage.js"></script>
     <script defer src="/__/firebase/7.0.0/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/7.0.0/firebase-firestore.js"></script>
 
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
@@ -21,6 +22,31 @@
     <h2>Welcome</h2>
     <section id="products__container"></section>
 
+    <form id="signup-form">
+      <div class="input-field">
+        <label for="signup-email">email address</label>
+        <input type="email" id="signup-email" required />
+      </div>
+      <div class="input-field">
+        <label for="password">Password</label>
+        <input type="password" id="signup-password" required />
+      </div>
+      <button type="submit">SignUp</button>
+    </form>
+
+    <form id="login-form">
+      <div class="input-field">
+        <label for="login-email">your email address</label>
+        <input type="email" id="login-email" required />
+      </div>
+      <div class="input-field">
+        <label for="password">your Password</label>
+        <input type="password" id="login-password" required />
+      </div>
+      <button type="submit">Login</button>
+    </form>
+
+    <button id="logout">Log Out</button>
     <form id="add__product">
       <input type="text" name="name" placeholder="Product name" />
       <input type="number" name="price" placeholder="Product price" />
