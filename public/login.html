@@ -20,7 +20,15 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="main__login">
+    <nav class="nav">
+      <ul class="nav__items">
+        <li class="nav__item"><a href="index.html">Home</a></li>
+        <li class="nav__item"><a href="admin.html">Admin</a></li>
+        <li class="nav__item"><a href="login.html">Log In</a></li>
+        <button class="nav__item btn__nav" id="logout">Log Out</button>
+      </ul>
+    </nav>
+    <main class="main main__login">
       <section class="card">
         <form class="form" id="signup-form">
           <legend>Sign Up</legend>
@@ -69,7 +77,6 @@
           <button class="btn" type="submit">Log In</button>
         </form>
       </section>
-      <button id="logout">Log Out</button>
     </main>
     <script src="app.js"></script>
   </body>
