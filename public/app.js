@@ -9,28 +9,47 @@ document.addEventListener('DOMContentLoaded', event => {
   function renderProduct(doc) {
     const docFrag = document.createDocumentFragment();
     let article = document.createElement('article');
+    let productFigure = document.createElement('figure');
+    let productSection = document.createElement('section');
+
     let productName = document.createElement('h4');
     let productPrice = document.createElement('p');
+    let productImg = document.createElement('img');
+    let mainCategory = document.createElement('p');
+    let subCategory = document.createElement('p');
     let addButton = document.createElement('button');
 
     let deleteButton = document.createElement('button');
     let updateButton = document.createElement('button');
 
     article.setAttribute('product-id', doc.id);
-
     productName.textContent = doc.data().name;
     productPrice.textContent = doc.data().price;
+    productImg.src = doc.data().src;
+    mainCategory.textContent = doc.data().mainCategory;
+    subCategory.textContent = doc.data().subCategory;
     addButton.textContent = 'Add to basket';
     deleteButton.textContent = 'Delete';
     updateButton.textContent = 'Update';
 
+    article.classList.add('product__container');
+    productSection.classList.add('product__section');
+    productImg.classList.add('product__img');
+
     docFrag.appendChild(productName);
     docFrag.appendChild(productPrice);
+    docFrag.appendChild(mainCategory);
+    docFrag.appendChild(subCategory);
     docFrag.appendChild(addButton);
     docFrag.appendChild(deleteButton);
     docFrag.appendChild(updateButton);
 
-    article.appendChild(docFrag);
+    productFigure.appendChild(productImg);
+
+    productSection.appendChild(docFrag);
+    article.appendChild(productFigure);
+    article.appendChild(productSection);
+
     productsContainer.appendChild(article);
 
     addButton.addEventListener('click', e => {

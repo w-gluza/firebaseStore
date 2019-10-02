@@ -77,6 +77,26 @@ a:active {
   color: var(--color-primary);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-regular);
+  letter-spacing: var(--letter-spacing-regular);
+  color: var(--color-black);
+}
+
+p {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-regular);
+  letter-spacing: var(--letter-spacing-regular);
+  color: var(--color-black);
+}
+
 .btn {
   font-size: large;
   border-radius: 2px;
@@ -163,4 +183,22 @@ input::placeholder {
 
 input:focus {
   border-bottom: 2px solid var(--color-primary);
+}
+
+.products__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.product__container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  max-width: 500px;
+  background-color: #fff;
+}
+.product__section {
+  padding: 5%;
+}
+img {
+  width: 100%;
 }

@@ -34,9 +34,18 @@
       <form id="add__product">
         <input type="text" name="name" placeholder="Product name" />
         <input type="number" name="price" placeholder="Product price" />
+        <select id="mainCategory">
+          <option value="female">female</option>
+          <option value="male">male</option>
+        </select>
+        <select id="subCategory">
+          <option value="cityBike">city</option>
+          <option value="bmx">bmx</option>
+          <option value="cross">cross</option>
+        </select>
         <button>Add Item</button>
       </form>
-      <section id="products__container"></section>
+      <section class="products__container" id="products__container"></section>
     </main>
     <script src="app.js"></script>
   </body>
