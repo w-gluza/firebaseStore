@@ -4,53 +4,48 @@ document.addEventListener('DOMContentLoaded', event => {
   const myProducts = db.collection('products');
   const productsContainer = document.querySelector('#products__container');
   const form = document.querySelector('#add__product');
+  const mainCategory = document.querySelector('#main__category');
+  const subCategory = document.querySelector('#sub__category');
+
+  const femaleCategory = document.querySelector('#female__cat');
+  const maleCategory = document.querySelector('#male__cat');
   const basket = [];
 
-  function renderProduct(doc) {
+  function renderProductAdmin(doc) {
     const docFrag = document.createDocumentFragment();
-    let article = document.createElement('article');
-    let productFigure = document.createElement('figure');
-    let productSection = document.createElement('section');
-
+    let productArticle = document.createElement('article');
+    let sectionContainer = document.createElement('section');
+    let sectionFigure = document.createElement('figure');
     let productName = document.createElement('h4');
     let productPrice = document.createElement('p');
-    let productImg = document.createElement('img');
-    let mainCategory = document.createElement('p');
-    let subCategory = document.createElement('p');
-    let addButton = document.createElement('button');
+    let productImage = document.createElement('img');
 
+    let addButton = document.createElement('button');
     let deleteButton = document.createElement('button');
     let updateButton = document.createElement('button');
 
-    article.setAttribute('product-id', doc.id);
+    productArticle.setAttribute('product-id', doc.id);
+    productArticle.classList.add('product__container');
+
     productName.textContent = doc.data().name;
     productPrice.textContent = doc.data().price;
-    productImg.src = doc.data().src;
-    mainCategory.textContent = doc.data().mainCategory;
-    subCategory.textContent = doc.data().subCategory;
+    productImage.src = doc.data().src;
+
     addButton.textContent = 'Add to basket';
     deleteButton.textContent = 'Delete';
     updateButton.textContent = 'Update';
 
-    article.classList.add('product__container');
-    productSection.classList.add('product__section');
-    productImg.classList.add('product__img');
-
     docFrag.appendChild(productName);
     docFrag.appendChild(productPrice);
-    docFrag.appendChild(mainCategory);
-    docFrag.appendChild(subCategory);
     docFrag.appendChild(addButton);
     docFrag.appendChild(deleteButton);
     docFrag.appendChild(updateButton);
+    sectionFigure.appendChild(productImage);
 
-    productFigure.appendChild(productImg);
-
-    productSection.appendChild(docFrag);
-    article.appendChild(productFigure);
-    article.appendChild(productSection);
-
-    productsContainer.appendChild(article);
+    sectionContainer.appendChild(docFrag);
+    productArticle.appendChild(sectionFigure);
+    productArticle.appendChild(sectionContainer);
+    productsContainer.appendChild(productArticle);
 
     addButton.addEventListener('click', e => {
       basket.push(doc.data());
@@ -75,13 +70,11 @@ document.addEventListener('DOMContentLoaded', event => {
     });
   }
 
-  // getting data from Firestore
-
   myProducts.onSnapshot(products => {
     let changes = products.docChanges();
     changes.forEach(change => {
       if (change.type === 'added') {
-        renderProduct(change.doc);
+        renderProductAdmin(change.doc);
       } else if (change.type === 'removed') {
         let article = productsContainer.querySelector(
           '[product-id=' + change.doc.id + ']'
@@ -92,18 +85,37 @@ document.addEventListener('DOMContentLoaded', event => {
           '[product-id=' + change.doc.id + ']'
         );
         productsContainer.removeChild(article);
-        renderProduct(change.doc);
+        renderProductAdmin(change.doc);
       }
     });
   });
 
+  if (maleCategory != null) {
+    maleCategory.addEventListener('click', () => {
+      if (doc.data().mainCategory == 'male') {
+        console.log(doc.data().name + ' has male category');
+      }
+    });
+  }
+  if (femaleCategory != null) {
+    femaleCategory.addEventListener('click', () => {
+      myProducts.where('mainCategory', '==', 'female').onSnapshot();
+    });
+    // if (doc.data().mainCategory == 'female') {
+    //   console.log(doc.data().name + ' has female category');
+    //
+    // });
+  }
   // creating new data
   if (form != null) {
     form.addEventListener('submit', e => {
       e.preventDefault();
       myProducts.add({
         name: form.name.value,
-        price: parseFloat(form.price.value)
+        price: parseFloat(form.price.value),
+        src: form.src.value,
+        mainCategory: mainCategory.value,
+        subCategory: subCategory.value
       });
     });
   }

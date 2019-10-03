@@ -32,16 +32,24 @@
       <h2>Admin page</h2>
       <button id="logout">Log Out</button>
       <form id="add__product">
-        <input type="text" name="name" placeholder="Product name" />
-        <input type="number" name="price" placeholder="Product price" />
-        <select id="mainCategory">
-          <option value="female">female</option>
-          <option value="male">male</option>
+        <input type="text" name="name" placeholder="Product name" required />
+        <input
+          type="number"
+          name="price"
+          placeholder="Product price"
+          required
+        />
+        <input type="text" name="src" placeholder="http img src" />
+        <select id="main__category" required>
+          <option value="" hidden>Select Main Category</option>
+          <option value="male">Male Bike</option>
+          <option value="female">Female Bike</option>
         </select>
-        <select id="subCategory">
-          <option value="cityBike">city</option>
-          <option value="bmx">bmx</option>
-          <option value="cross">cross</option>
+        <select id="sub__category" required>
+          <option value="" hidden>Select Main Category</option>
+          <option value="retro">Retro Bike</option>
+          <option value="city">City Bike</option>
+          <option value="road">Road Bike</option>
         </select>
         <button>Add Item</button>
       </form>
