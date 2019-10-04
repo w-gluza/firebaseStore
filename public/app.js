@@ -152,7 +152,24 @@ document.addEventListener('DOMContentLoaded', event => {
         mainCategory: mainCategory.value,
         subCategory: subCategory.value
       });
+      resetForm();
     });
+  }
+  function resetForm() {
+    form.name.value = '';
+    form.price.value = '';
+    form.src.value = '';
+    form.description.value = '';
+    mainCategory.value = '';
+    subCategory.value = '';
+  }
+  function resetLogin() {
+    form.name.value = '';
+    form.price.value = '';
+    form.src.value = '';
+    form.description.value = '';
+    mainCategory.value = '';
+    subCategory.value = '';
   }
 
   auth.onAuthStateChanged(user => {
@@ -185,9 +202,16 @@ document.addEventListener('DOMContentLoaded', event => {
       auth.createUserWithEmailAndPassword(email, password).then(cred => {
         console.log(cred);
       });
+      resetSignupForm();
+      alert(
+        'User Signed up Successfully! You have been automatically logged in'
+      );
     });
   }
-
+  function resetSignupForm() {
+    signupForm['signup-email'].value = '';
+    signupForm['signup-password'].value = '';
+  }
   //log in, check if button/form even exists on this page
   const loginForm = document.querySelector('#login-form');
   if (loginForm != null) {
@@ -199,9 +223,15 @@ document.addEventListener('DOMContentLoaded', event => {
 
       auth.signInWithEmailAndPassword(email, password).then(cred => {
         console.log('user logged in');
-        window.location.href = 'admin.html';
       });
+      resetLogInForm();
+      alert('You have been successfully logged in');
     });
+  }
+
+  function resetLogInForm() {
+    loginForm['login-email'].value = '';
+    loginForm['login-password'].value = '';
   }
 
   //log out form check if button/form even exists on this page
@@ -212,6 +242,7 @@ document.addEventListener('DOMContentLoaded', event => {
       e.preventDefault();
       auth.signOut();
       window.location.href = 'index.html';
+      alert('You have been successfully logged out');
     });
   }
   // end document loaded
@@ -227,18 +258,16 @@ const btn = document.getElementById('myBtn');
 const span = document.getElementsByClassName('close')[0];
 
 // When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = 'block';
-};
+
+if (btn != null) {
+  btn.addEventListener('click', () => {
+    modal.style.display = 'block';
+  });
+}
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = 'none';
-};
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
+if (span != null) {
+  span.addEventListener('click', () => {
     modal.style.display = 'none';
-  }
-};
+  });
+}

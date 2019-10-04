@@ -157,6 +157,9 @@ p {
   justify-items: center;
 }
 .main__admin {
+  padding: 5% 2%;
+  display: grid;
+  gap: 5rem;
   grid-template-columns: 1fr;
 }
 .card {
@@ -266,10 +269,13 @@ img {
   justify-content: center;
 }
 
-.card__basket {
+.card__basket,
+.card__admin {
   padding: 2rem;
   display: grid;
   align-items: center;
+}
+.card__basket {
   justify-items: center;
 }
 
