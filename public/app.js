@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', event => {
   const mainCategory = document.querySelector('#main__category');
   const subCategory = document.querySelector('#sub__category');
 
+  const allCategory = document.querySelector('#all__cat');
   const femaleCategory = document.querySelector('#female__cat');
   const maleCategory = document.querySelector('#male__cat');
   const basket = [];
@@ -27,11 +28,18 @@ document.addEventListener('DOMContentLoaded', event => {
     let updateButton = document.createElement('button');
 
     productArticle.setAttribute('product-id', doc.id);
+    productArticle.classList.add(doc.data().mainCategory);
     productArticle.classList.add('product__container');
+    productPrice.classList.add('product__price');
+    productCategory.classList.add('product__category');
+
+    addButton.classList.add('btn');
+    deleteButton.classList.add('btnHide');
+    updateButton.classList.add('btnHide');
 
     productName.textContent = doc.data().name;
     productCategory.textContent = doc.data().mainCategory;
-    productPrice.textContent = doc.data().price;
+    productPrice.textContent = doc.data().price + ' €';
     productDescription.textContent = doc.data().description;
     productImage.src = doc.data().src;
 
@@ -97,21 +105,23 @@ document.addEventListener('DOMContentLoaded', event => {
     });
   });
 
+  if (allCategory != null) {
+    allCategory.addEventListener('click', () => {
+      productsContainer.classList.remove('maleCat');
+      productsContainer.classList.remove('femaleCat');
+    });
+  }
   if (maleCategory != null) {
     maleCategory.addEventListener('click', () => {
-      if (doc.data().mainCategory == 'male') {
-        console.log(doc.data().name + ' has male category');
-      }
+      productsContainer.classList.add('maleCat');
+      productsContainer.classList.remove('femaleCat');
     });
   }
   if (femaleCategory != null) {
     femaleCategory.addEventListener('click', () => {
-      myProducts.where('mainCategory', '==', 'female').onSnapshot();
+      productsContainer.classList.add('femaleCat');
+      productsContainer.classList.remove('maleCat');
     });
-    // if (doc.data().mainCategory == 'female') {
-    //   console.log(doc.data().name + ' has female category');
-    //
-    // });
   }
   // creating new data
   if (form != null) {
