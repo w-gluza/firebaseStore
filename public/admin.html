@@ -29,31 +29,37 @@
       </ul>
     </nav>
     <main class="main main__admin">
-      <h2>Admin page</h2>
-      <button id="logout">Log Out</button>
-      <form id="add__product">
-        <input type="text" name="name" placeholder="Product name" required />
-        <input
-          type="number"
-          name="price"
-          placeholder="Product price"
-          required
-        />
-        <input type="text" name="src" placeholder="http img src" />
-        <select id="main__category" required>
-          <option value="" hidden>Select Main Category</option>
-          <option value="male">Male Bike</option>
-          <option value="female">Female Bike</option>
-        </select>
-        <select id="sub__category" required>
-          <option value="" hidden>Select Main Category</option>
-          <option value="retro">Retro Bike</option>
-          <option value="city">City Bike</option>
-          <option value="road">Road Bike</option>
-        </select>
-        <button>Add Item</button>
-      </form>
-      <section class="products__container" id="products__container"></section>
+      <section class="card">
+        <form class="form" id="add__product">
+          <input type="text" name="name" placeholder="Product name" required />
+          <input
+            type="number"
+            name="price"
+            placeholder="Product price"
+            required
+          />
+          <input type="text" name="src" placeholder="http img src" />
+          <select id="main__category" required>
+            <option value="" hidden>Select Main Category</option>
+            <option value="male">Male Bike</option>
+            <option value="female">Female Bike</option>
+          </select>
+          <select id="sub__category" required>
+            <option value="" hidden>Select Sub Category</option>
+            <option value="retro">Retro Bike</option>
+            <option value="city">City Bike</option>
+            <option value="road">Road Bike</option>
+          </select>
+          <input
+            type="text"
+            name="description"
+            placeholder="Produce Description"
+          />
+
+          <button class="btn">Add Item</button>
+        </form>
+      </section>
+      <!-- <section class="products__container" id="products__container"></section> -->
     </main>
     <script src="app.js"></script>
   </body>

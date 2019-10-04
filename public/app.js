@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', event => {
     let sectionFigure = document.createElement('figure');
     let productName = document.createElement('h4');
     let productPrice = document.createElement('p');
+    let productCategory = document.createElement('p');
+    let productDescription = document.createElement('p');
     let productImage = document.createElement('img');
 
     let addButton = document.createElement('button');
@@ -28,7 +30,9 @@ document.addEventListener('DOMContentLoaded', event => {
     productArticle.classList.add('product__container');
 
     productName.textContent = doc.data().name;
+    productCategory.textContent = doc.data().mainCategory;
     productPrice.textContent = doc.data().price;
+    productDescription.textContent = doc.data().description;
     productImage.src = doc.data().src;
 
     addButton.textContent = 'Add to basket';
@@ -37,6 +41,9 @@ document.addEventListener('DOMContentLoaded', event => {
 
     docFrag.appendChild(productName);
     docFrag.appendChild(productPrice);
+    docFrag.appendChild(productCategory);
+    docFrag.appendChild(productDescription);
+
     docFrag.appendChild(addButton);
     docFrag.appendChild(deleteButton);
     docFrag.appendChild(updateButton);
@@ -58,12 +65,12 @@ document.addEventListener('DOMContentLoaded', event => {
 
     deleteButton.addEventListener('click', e => {
       let id = e.target.parentElement.getAttribute('product-id');
-      myProducts.doc(id).delete();
+      myProducts.doc(doc.id).delete();
     });
 
     updateButton.addEventListener('click', e => {
       let id = e.target.parentElement.getAttribute('product-id');
-      myProducts.doc(id).update({
+      myProducts.doc(doc.id).update({
         name: 'test',
         price: '999'
       });
@@ -114,6 +121,7 @@ document.addEventListener('DOMContentLoaded', event => {
         name: form.name.value,
         price: parseFloat(form.price.value),
         src: form.src.value,
+        description: form.description.value,
         mainCategory: mainCategory.value,
         subCategory: subCategory.value
       });
