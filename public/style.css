@@ -139,6 +139,12 @@ p {
   align-items: center;
   justify-items: end;
 }
+.nav__items--mod {
+  grid-template-columns: repeat(5, max-content);
+}
+.nav__items--admin {
+  grid-template-columns: repeat(2, max-content);
+}
 .main {
   padding: 5% 5%;
 }
@@ -223,6 +229,9 @@ img {
 .hidden .product__container section > .btnHide {
   display: none;
 }
+.admin .product__container section > .btnAddHide {
+  display: none;
+}
 .product__container section {
   padding: 5%;
   display: grid;
@@ -244,4 +253,91 @@ img {
 .maleCat > .male,
 .femaleCat > .female {
   display: none;
+}
+
+.svg {
+  width: 100px;
+  height: auto;
+}
+
+.main__basket {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__basket {
+  padding: 2rem;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav__item button span,
+.card__basket p {
+  color: var(--color-primary);
+}
+
+.card__basket p {
+  font-size: var(--font-size-large);
+}
+
+.btn-cat {
+  color: var(--color-primary);
+  font-size: 14px;
+  padding: 1rem 2rem;
+}
+
+.btn-cat:hover {
+  background: #fefefe;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background-color: rgba(255, 255, 255, 0.6);
+  transition: 0.2s ease-out;
+}
+.btns__container {
+  margin: 2rem 0;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(3, max-content);
+}
+.product__article h2 {
+  margin-left: 2rem;
 }

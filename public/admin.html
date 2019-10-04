@@ -21,10 +21,8 @@
   </head>
   <body>
     <nav class="nav">
-      <ul class="nav__items">
+      <ul class="nav__items nav__items--admin">
         <li class="nav__item"><a href="index.html">Home</a></li>
-        <li class="nav__item"><a href="admin.html">Admin</a></li>
-        <li class="nav__item"><a href="login.html">Log In</a></li>
         <button class="nav__item btn__nav" id="logout">Log Out</button>
       </ul>
     </nav>
@@ -59,7 +57,10 @@
           <button class="btn">Add Item</button>
         </form>
       </section>
-      <section class="products__container" id="products__container"></section>
+      <section
+        class="products__container admin"
+        id="products__container"
+      ></section>
     </main>
     <script src="app.js"></script>
   </body>

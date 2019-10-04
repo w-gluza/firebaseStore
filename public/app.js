@@ -1,3 +1,5 @@
+let basketTotal = 0;
+
 document.addEventListener('DOMContentLoaded', event => {
   const db = firebase.firestore();
   const auth = firebase.auth();
@@ -6,11 +8,13 @@ document.addEventListener('DOMContentLoaded', event => {
   const form = document.querySelector('#add__product');
   const mainCategory = document.querySelector('#main__category');
   const subCategory = document.querySelector('#sub__category');
+  const proceedButton = document.querySelector('#proceed');
 
   const allCategory = document.querySelector('#all__cat');
   const femaleCategory = document.querySelector('#female__cat');
   const maleCategory = document.querySelector('#male__cat');
-  const basket = [];
+
+  let basket = [];
 
   function renderProductAdmin(doc) {
     const docFrag = document.createDocumentFragment();
@@ -34,6 +38,7 @@ document.addEventListener('DOMContentLoaded', event => {
     productCategory.classList.add('product__category');
 
     addButton.classList.add('btn');
+    addButton.classList.add('btnAddHide');
     deleteButton.classList.add('btnHide');
     updateButton.classList.add('btnHide');
 
@@ -60,15 +65,22 @@ document.addEventListener('DOMContentLoaded', event => {
     sectionContainer.appendChild(docFrag);
     productArticle.appendChild(sectionFigure);
     productArticle.appendChild(sectionContainer);
-    productsContainer.appendChild(productArticle);
+    if (productsContainer != null) {
+      productsContainer.appendChild(productArticle);
+    }
 
     addButton.addEventListener('click', e => {
       basket.push(doc.data());
+      basket.push(doc.data());
       console.log(basket);
-      let basketTotal = basket.reduce(function(prev, cur) {
-        return prev + cur.price;
+      let basketContainer = document.querySelectorAll('.basket__container');
+      basketTotal = basket.reduce(function basket(prev, cur) {
+        return prev + cur.price / 2;
       }, 0);
-      console.log('Total Price:', basketTotal); // Total Price
+      basketContainer.forEach(basketItem => {
+        basketItem.innerText = '| ' + basketTotal + ' € |';
+      });
+      console.log('Total Price:', basketTotal);
     });
 
     deleteButton.addEventListener('click', e => {
@@ -84,7 +96,12 @@ document.addEventListener('DOMContentLoaded', event => {
       });
     });
   }
-
+  if (proceedButton != null) {
+    proceedButton.addEventListener('click', () => {
+      alert('Order Completed Successfully!');
+      window.location.href = 'index.html';
+    });
+  }
   myProducts.onSnapshot(products => {
     let changes = products.docChanges();
     changes.forEach(change => {
@@ -199,3 +216,29 @@ document.addEventListener('DOMContentLoaded', event => {
   }
   // end document loaded
 });
+
+// Get the modal
+const modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+const btn = document.getElementById('myBtn');
+
+// Get the <span> element that closes the modal
+const span = document.getElementsByClassName('close')[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = 'block';
+};
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = 'none';
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = 'none';
+  }
+};

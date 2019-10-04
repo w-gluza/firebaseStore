@@ -19,19 +19,39 @@
   </head>
   <body>
     <nav class="nav">
-      <ul class="nav__items">
+      <ul class="nav__items nav__items--mod">
         <li class="nav__item"><a href="index.html">Home</a></li>
         <li class="nav__item"><a href="admin.html">Admin</a></li>
+        <li class="nav__item">
+          <button id="myBtn">
+            Basket
+            <span class="basket__container"></span>
+          </button>
+        </li>
         <li class="nav__item"><a href="login.html">Log In</a></li>
         <button class="nav__item btn__nav" id="logout">Log Out</button>
       </ul>
     </nav>
+    <!-- The Modal w3school -->
+    <div id="myModal" class="modal">
+      <main class="main main__basket">
+        <span class="close">&times;</span>
+        <section class="card card__basket">
+          <h3>Shopping Cart</h3>
+          <img class="svg" src="cart.svg" alt="Shopping cart" />
+          <p class="basket__container"></p>
+          <button class="btn" id="proceed">Proceed</button>
+        </section>
+      </main>
+    </div>
     <main class="main">
       <article class="product__article">
         <h2>Our Bikes:</h2>
-        <button class="btn" id="all__cat">All Bikes</button>
-        <button class="btn" id="female__cat">Female Bikes</button>
-        <button class="btn" id="male__cat">Male Bikes</button>
+        <div class="btns__container">
+          <button class="btn-cat" id="all__cat">All Bikes</button>
+          <button class="btn-cat" id="female__cat">Female Bikes</button>
+          <button class="btn-cat" id="male__cat">Male Bikes</button>
+        </div>
       </article>
       <section
         class="products__container hidden"
